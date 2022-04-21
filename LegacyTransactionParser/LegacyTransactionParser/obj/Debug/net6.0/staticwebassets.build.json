@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "04/wCbQfT6C1/BmmEWlnLQmFi8NJiFdy2R/m4lyqido=",
+  "Source": "LegacyTransactionParser",
+  "BasePath": "_content/LegacyTransactionParser",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

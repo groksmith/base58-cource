@@ -34,7 +34,7 @@ public class LegacyTransactionParser
             var txid = GetTXID(currentOffset);
             input.Txid = txid.txid;
             currentOffset = txid.offset;
-
+            transaction.Inputs.Add(input);
         }
         
         return transaction;
@@ -49,10 +49,25 @@ public class LegacyTransactionParser
 
     private (int offset, string? txid) GetTXID(int currentOffset)
     {
-        var txidString = RawData.Substring(currentOffset, FieldSize.TXID);
-        var txidBytes = Encoding.ASCII.GetBytes(txidString);
-        var txidBytesBigEndian = txidBytes.Reverse().ToArray();
-        return (currentOffset + FieldSize.TXID, txidBytesBigEndian.GetHexStringFromByteArray());
+        var txidString = new StringBuilder(RawData.Substring(currentOffset, FieldSize.TXID));
+
+        return (currentOffset + FieldSize.TXID, StringRotation(txidString).ToString());
+    }
+
+    private StringBuilder StringRotation(StringBuilder txidString)
+    {
+        var i = 1;
+        var j = txidString.Length-1; 
+        
+        for (var k = 0;k < txidString.Length/4 ;++k )
+        {
+            (txidString[i], txidString[j]) = (txidString[j], txidString[i]);
+            (txidString[i-1], txidString[j-1]) = (txidString[j-1], txidString[i-1]);
+            i+=2;
+            j-=2;
+        }
+
+        return txidString;
     }
 
     private (int offset, uint varint) GetVarInt(int currentOffset)
