@@ -27,6 +27,7 @@ public class LegacyTransactionParser
         currentOffset = inputCount.offset;
 
         transaction.Inputs = new List<Input>();
+        
         for (var i = 0; i < transaction.InputCount; i++)
         {
             var input = new Input();
