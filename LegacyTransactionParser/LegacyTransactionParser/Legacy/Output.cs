@@ -8,7 +8,7 @@ public class Output
     public ulong Amount { get; set; }
     
     [JsonPropertyName("script_pub_key_len")]
-    public int ScriptPubKeyLen { get; set; }
+    public uint ScriptPubKeyLen { get; set; }
     
     [JsonPropertyName("script_pub_key")]
     public string? ScriptPubKey { get; set; }

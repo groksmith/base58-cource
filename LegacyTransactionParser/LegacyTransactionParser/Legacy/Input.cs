@@ -11,11 +11,11 @@ public class Input
     public uint VOut { get; set; }
 
     [JsonPropertyName("script_sig_size")]
-    public int ScriptSigSize { get; set; }
+    public uint ScriptSigSize { get; set; }
     
     [JsonPropertyName("script_sig")]
     public string? ScriptSig { get; set; }
 
     [JsonPropertyName("sequence")]
-    public uint Sequence { get; set; }
+    public string? Sequence { get; set; }
 }

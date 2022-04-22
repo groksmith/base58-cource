@@ -20,7 +20,7 @@ public class Transaction
     public List<Output> Outputs { get; set; }
 
     [JsonPropertyName("locktime")]
-    public uint LockTime { get; set; }
+    public string LockTime { get; set; }
 }
 
 

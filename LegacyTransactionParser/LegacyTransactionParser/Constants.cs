@@ -2,6 +2,7 @@ namespace LegacyTransactionParser;
 
 public class FieldSize
 {
+    public const int LOCKTIME = 8;
     public const int VERSION = 8;
     public const int TXID = 64;
     public const int VOUT = 8;
