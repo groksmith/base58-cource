@@ -31,7 +31,7 @@ public class LegacyTransactionParser
         {
             var input = new Input();
 
-            var txid = GetTXID(currentOffset);
+            var txid = GetTxid(currentOffset);
             input.Txid = txid.txid;
             currentOffset = txid.offset;
 
@@ -117,7 +117,7 @@ public class LegacyTransactionParser
         return (currentOffset + FieldSize.VALUE, value.ReverseBytes());
     }
 
-    private (int offset, string? txid) GetTXID(int currentOffset)
+    private (int offset, string? txid) GetTxid(int currentOffset)
     {
         var txidRawString = RawData.Substring(currentOffset, FieldSize.TXID);
         var txidBytesBigEndian = txidRawString.ReverseEndian();

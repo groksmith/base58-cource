@@ -11,13 +11,13 @@ public class Transaction
     public uint InputCount { get; set; }
 
     [JsonPropertyName("inputs")]
-    public List<Input> Inputs { get; set; }
+    public List<Input> Inputs { get; set; } = null!;
 
     [JsonPropertyName("output_count")]
     public uint OutputCount { get; set; }
 
     [JsonPropertyName("outputs")]
-    public List<Output> Outputs { get; set; }
+    public List<Output> Outputs { get; set; } = null!;
 
     [JsonPropertyName("locktime")]
     public uint LockTime { get; set; }

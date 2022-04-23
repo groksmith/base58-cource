@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyTransactionParser", "LegacyTransactionParser\LegacyTransactionParser.csproj", "{624D2C72-2C85-4D04-ABF4-180702D064EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base58Encoding", "Base58Encoding\Base58Encoding.csproj", "{D22304EA-8FC6-4E95-9AB9-F1C7101516E5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{624D2C72-2C85-4D04-ABF4-180702D064EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624D2C72-2C85-4D04-ABF4-180702D064EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624D2C72-2C85-4D04-ABF4-180702D064EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D22304EA-8FC6-4E95-9AB9-F1C7101516E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D22304EA-8FC6-4E95-9AB9-F1C7101516E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D22304EA-8FC6-4E95-9AB9-F1C7101516E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D22304EA-8FC6-4E95-9AB9-F1C7101516E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
