@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'BTC Decode
+
+  '
+Globals:
+  Function:
+    Timeout: 10
+Resources:
+  LegacyTransactionParserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: LegacyTransactionParserFunction
+      Handler: LegacyTransactionParser::LegacyTransactionParser.LambdaFunction::FunctionHandlerAsync
+      Runtime: dotnet6
+      Architectures:
+      - x86_64
+      MemorySize: 256
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        Swagger:
+          Type: Api
+          Properties:
+            Path: /swagger/{proxy+}
+            Method: get
+        LegacyTransactionParser:
+          Type: Api
+          Properties:
+            Path: /LegacyTransaction
+            Method: get
+    Metadata:
+      SamResourceId: LegacyTransactionParserFunction
+Outputs:
+  LegacyTransactionParserApi:
+    Description: API Gateway endpoint URL for Prod stage for LegacyTransactionParser
+      function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/swagger
+  LegacyTransactionParserFunction:
+    Description: LegacyTransactionParser Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - LegacyTransactionParserFunction
+      - Arn
+  LegacyTransactionParserFunctionIamRole:
+    Description: Implicit IAM Role created for LegacyTransactionParser function
+    Value:
+      Fn::GetAtt:
+      - LegacyTransactionParserFunctionRole
+      - Arn
