@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Btc Decode
+
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  BtcTransactionParserFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ./src/BtcTransactionParser/
+      Handler: BtcTransactionParser::BtcTransactionParser.LambdaFunction::FunctionHandlerAsync
+      Runtime: dotnet6
+      MemorySize: 256
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
+      Events:
+        Swagger:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /swagger/{proxy+}
+            Method: get
+        Api:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        Root:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /
+            Method: ANY
+
+Outputs:
+  BtcTransactionParserApi:
+    Description: "API Gateway endpoint URL for Prod stage for BtcTransactionParser function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/swagger"
+  BtcTransactionParserFunction:
+    Description: "BtcTransactionParser Lambda Function ARN"
+    Value: !GetAtt BtcTransactionParserFunction.Arn
+  BtcTransactionParserFunctionIamRole:
+    Description: "Implicit IAM Role created for BtcTransactionParser function"
+    Value: !GetAtt BtcTransactionParserFunctionRole.Arn
