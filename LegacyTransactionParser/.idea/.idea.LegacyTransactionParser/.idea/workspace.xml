@@ -5,62 +5,30 @@
     <projectFile profileName="IIS Express">LegacyTransactionParser/LegacyTransactionParser.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f670de0c-9467-491e-a315-57840d57648e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LegacyTransactionParser/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LegacyTransactionParser/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LegacyTransactionParser/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LegacyTransactionParser/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LegacyTransactionParser/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/LegacyTransactionParser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/LegacyTransactionParser.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/LegacyTransactionParser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/LegacyTransactionParser.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/LegacyTransactionParser.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/Microsoft.OpenApi.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/bin/Debug/net6.0/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.MvcApplicationPartsAssemblyInfo.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.csproj.CopyComplete" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.genruntimeconfig.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/LegacyTransactionParser.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/apphost" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/ref/LegacyTransactionParser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/refint/LegacyTransactionParser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/Debug/net6.0/staticwebassets.build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/LegacyTransactionParser.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/LegacyTransactionParser.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/LegacyTransactionParser.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LegacyTransactionParser/obj/staticwebassets.pack.sentinel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LegacyTransactionParser/LegacyTransactionParser.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LegacyTransactionParser/LegacyTransactionParser.csproj" afterDir="false" />
-    </list>
+    <list default="true" id="f670de0c-9467-491e-a315-57840d57648e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3a5d3444c2b44c9b02fc069b8b27c879ec400/3c/d0f3ac6d/NumberStyles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3a5d3444c2b44c9b02fc069b8b27c879ec400/df/78f2f0f2/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3a5d3444c2b44c9b02fc069b8b27c879ec400/e6/5d68a832/Number.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/80fad1abc6a0b19dbe738ff7fdc6d92da5bf128839240743dd9c1d3e274cf/SwaggerMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cabc7d99336f3be8da98cc86b60ab558948b559727781a9c14417c32d84fea/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ashot/Documents/Projects/base58-cource/LegacyTransactionParser/LegacyTransactionParser/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="286ir57nCfOVHxB6JlNruzCDBle" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

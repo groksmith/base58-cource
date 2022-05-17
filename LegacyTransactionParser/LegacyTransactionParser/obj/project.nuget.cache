@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7+DMLMeHSgGgLQJYe7SzBVYjvB1nxfmVz45XJeY+7AqBNwEVllYkc2+qYrdJbQWeDoTLOqWFdZtiJhfWEgqleg==",
+  "dgSpecHash": "FkllqRzp7QEbpiBzOM2Zo7/ay+5XPbZBFAIz5n1YTfakWKJp0meLjQHsVnGlREF3yND48nehAua2bvO6VHP42g==",
   "success": true,
   "projectFilePath": "/home/ashot/Documents/Projects/base58-cource/LegacyTransactionParser/LegacyTransactionParser/LegacyTransactionParser.csproj",
   "expectedPackageFiles": [
