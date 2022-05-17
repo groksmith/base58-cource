@@ -17,5 +17,5 @@ public class Input
     public string? ScriptSig { get; set; }
 
     [JsonPropertyName("sequence")]
-    public uint Sequence { get; set; }
+    public string? Sequence { get; set; }
 }

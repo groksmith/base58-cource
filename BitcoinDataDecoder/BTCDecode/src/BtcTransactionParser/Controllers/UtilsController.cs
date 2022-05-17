@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
-using NBitcoin.JsonConverters;
 
 namespace BtcTransactionParser.Controllers;
 

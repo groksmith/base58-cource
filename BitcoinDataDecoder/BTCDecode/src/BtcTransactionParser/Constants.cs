@@ -1,5 +1,7 @@
 namespace BtcTransactionParser;
 
+// ReSharper disable InconsistentNaming
+
 public class FieldSize
 {
     public const int VERSION = 8;

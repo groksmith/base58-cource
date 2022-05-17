@@ -1,5 +1,5 @@
-using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 using BtcTransactionParser.Legacy;
 
 namespace BtcTransactionParser;
@@ -21,12 +21,13 @@ public class LegacyTransactionParser
         var version = GetVersion(currentOffset);
         transaction.Version = version.version;
         currentOffset = version.offset;
-        
+
         var inputCount = GetVarInt(currentOffset);
         transaction.InputCount = inputCount.varint;
         currentOffset = inputCount.offset;
 
         transaction.Inputs = new List<Input>();
+
         for (var i = 0; i < transaction.InputCount; i++)
         {
             var input = new Input();
@@ -35,15 +36,15 @@ public class LegacyTransactionParser
             input.Txid = txid.txid;
             currentOffset = txid.offset;
 
-            var vOut = GetOutCount(currentOffset);
-            input.VOut = vOut.outCount;
-            currentOffset = vOut.offset;
+            var vout = GetVout(currentOffset);
+            input.VOut = vout.vout;
+            currentOffset = vout.offset;
 
-            var scriptSigSize = GetVarInt(currentOffset);
-            input.ScriptSigSize = scriptSigSize.varint;
-            currentOffset = scriptSigSize.offset;
-            
-            var scriptSig = GetScriptSig(currentOffset, input.ScriptSigSize);
+            var ScriptSigSize = GetVarInt(currentOffset);
+            input.ScriptSigSize = ScriptSigSize.varint;
+            currentOffset = ScriptSigSize.offset;
+
+            var scriptSig = GetScriptSig(currentOffset, Convert.ToInt32(input.ScriptSigSize * 2));
             input.ScriptSig = scriptSig.scriptSig;
             currentOffset = scriptSig.offset;
 
@@ -53,7 +54,7 @@ public class LegacyTransactionParser
 
             transaction.Inputs.Add(input);
         }
-        
+
         var outputCount = GetVarInt(currentOffset);
         transaction.OutputCount = outputCount.varint;
         currentOffset = outputCount.offset;
@@ -62,88 +63,97 @@ public class LegacyTransactionParser
         for (var i = 0; i < transaction.OutputCount; i++)
         {
             var output = new Output();
-            var amount  = GetAmount(currentOffset);
+            var amount = GetAmount(currentOffset);
+
             output.Amount = amount.value;
             currentOffset = amount.offset;
-            
-            var scriptPubKeySize = GetVarInt(currentOffset);
-            output.ScriptPubKeyLen = scriptPubKeySize.varint;
-            currentOffset = scriptPubKeySize.offset;
-            
-            var scriptPubKey = GetScriptPubKey(currentOffset, output.ScriptPubKeyLen);
+
+            var scriptPubKeyLen = GetVarInt(currentOffset);
+
+            output.ScriptPubKeyLen = scriptPubKeyLen.varint;
+            currentOffset = scriptPubKeyLen.offset;
+
+            var scriptPubKey = GetScriptPubKey(currentOffset, Convert.ToInt32(output.ScriptPubKeyLen * 2));
             output.ScriptPubKey = scriptPubKey.scriptPubKey;
             currentOffset = scriptPubKey.offset;
 
             transaction.Outputs.Add(output);
         }
-        
-        var locktime = GetLocktime(currentOffset);
-        transaction.LockTime = locktime.locktime;
-        currentOffset = locktime.offset;
 
-        Debug.Assert(currentOffset == RawData.Length);
+        transaction.LockTime = GetLockTime(currentOffset);
+
         return transaction;
+    }
+
+    private string GetLockTime(int currentOffset)
+    {
+        return RawData.Substring(currentOffset, FieldSize.LOCKTIME);
+    }
+
+    private (int offset, string? scriptPubKey) GetScriptPubKey(int currentOffset, int scriptPubKeyLen)
+    {
+        var scriptPubKey = RawData.Substring(currentOffset, scriptPubKeyLen);
+
+        return (currentOffset + scriptPubKeyLen, scriptPubKey);
+    }
+
+    private (int offset, ulong value) GetAmount(int currentOffset)
+    {
+        var valueString = StringRotation(new StringBuilder(RawData.Substring(currentOffset, FieldSize.VALUE)));
+        var value = ulong.Parse(valueString.ToString(), NumberStyles.HexNumber);
+
+        return (currentOffset + FieldSize.VALUE, value);
+    }
+
+    private (int offset, string? sequence) GetSequence(int currentOffset)
+    {
+        var sequence = RawData.Substring(currentOffset, FieldSize.SEQUENCE);
+
+        return (currentOffset + FieldSize.SEQUENCE, sequence);
+    }
+
+    private (int offset, string? scriptSig) GetScriptSig(int currentOffset, int scriptSigSize)
+    {
+        var scriptSig = RawData.Substring(currentOffset, scriptSigSize);
+
+        return (currentOffset + scriptSigSize, scriptSig);
     }
 
     private (int offset, uint version) GetVersion(int currentOffset)
     {
         var versionString = RawData.Substring(currentOffset, FieldSize.VERSION);
         var version = uint.Parse(versionString, NumberStyles.HexNumber);
-        
         return (currentOffset + FieldSize.VERSION, version.ReverseBytes());
-    }
-
-    private (int offset, uint outCount) GetOutCount(int currentOffset)
-    {
-        var outCountString = RawData.Substring(currentOffset, FieldSize.VOUT);
-        var outCount = uint.Parse(outCountString, NumberStyles.HexNumber);
-        
-        return (currentOffset + FieldSize.VOUT, outCount.ReverseBytes());
-    }
-
-    private (int offset, uint sequence) GetSequence(int currentOffset)
-    {
-        var sequenceString = RawData.Substring(currentOffset, FieldSize.SEQUENCE);
-        var sequence = uint.Parse(sequenceString, NumberStyles.HexNumber);
-        
-        return (currentOffset + FieldSize.SEQUENCE, sequence.ReverseBytes());
-    }
-
-    private (int offset, ulong value) GetAmount(int currentOffset)
-    {
-        var valueString = RawData.Substring(currentOffset, FieldSize.VALUE);
-        var value = ulong.Parse(valueString, NumberStyles.HexNumber);
-        
-        return (currentOffset + FieldSize.VALUE, value.ReverseBytes());
     }
 
     private (int offset, string? txid) GetTxid(int currentOffset)
     {
-        var txidRawString = RawData.Substring(currentOffset, FieldSize.TXID);
-        var txidBytesBigEndian = txidRawString.ReverseEndian();
-        return (currentOffset + FieldSize.TXID, txidBytesBigEndian);
+        var txidString = new StringBuilder(RawData.Substring(currentOffset, FieldSize.TXID));
+
+        return (currentOffset + FieldSize.TXID, StringRotation(txidString).ToString());
     }
 
-    private (int offset, string? scriptSig) GetScriptSig(int currentOffset, uint scriptSigSize)
+    private (int offset, uint vout) GetVout(int currentOffset)
     {
-        var scriptSigSizeInt = (int)scriptSigSize * 2;
-        var scriptSigRawString = RawData.Substring(currentOffset, scriptSigSizeInt);
-        return (currentOffset + scriptSigSizeInt, scriptSigRawString);
+        var vout = Convert.ToUInt32(RawData.Substring(currentOffset, FieldSize.VOUT));
+
+        return (currentOffset + FieldSize.VOUT, vout);
     }
 
-    private (int offset, string? scriptPubKey) GetScriptPubKey(int currentOffset, uint scriptPubKeySize)
+    private static StringBuilder StringRotation(StringBuilder txidString)
     {
-        var scriptPubKeySizeInt = (int)scriptPubKeySize * 2;
-        var scriptPubKeyRawString = RawData.Substring(currentOffset, scriptPubKeySizeInt);
-        return (currentOffset + scriptPubKeySizeInt, scriptPubKeyRawString);
-    }
-    
-    private (int offset, uint locktime) GetLocktime(int currentOffset)
-    {
-        var locktimeString = RawData.Substring(currentOffset, FieldSize.LOCKTIME);
-        var locktime = uint.Parse(locktimeString, NumberStyles.HexNumber);
-        
-        return (currentOffset + FieldSize.LOCKTIME, locktime.ReverseBytes());
+        var i = 1;
+        var j = txidString.Length - 1;
+
+        for (var k = 0; k < txidString.Length / 4; ++k)
+        {
+            (txidString[i], txidString[j]) = (txidString[j], txidString[i]);
+            (txidString[i - 1], txidString[j - 1]) = (txidString[j - 1], txidString[i - 1]);
+            i += 2;
+            j -= 2;
+        }
+
+        return txidString;
     }
 
     private (int offset, uint varint) GetVarInt(int currentOffset)
@@ -170,7 +180,7 @@ public class LegacyTransactionParser
                 value = prefix;
                 break;
         }
-        
+
         var version = uint.Parse(value, NumberStyles.HexNumber);
         return (currentOffset, version);
     }

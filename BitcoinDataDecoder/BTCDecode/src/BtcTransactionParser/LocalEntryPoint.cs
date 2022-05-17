@@ -1,5 +1,3 @@
-using BtcTransactionParser;
-
 namespace BtcTransactionParser;
 
 public class LocalEntryPoint
