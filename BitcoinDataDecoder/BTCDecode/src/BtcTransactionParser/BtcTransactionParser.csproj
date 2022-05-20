@@ -13,10 +13,13 @@
         <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.2.0" />
         <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.4.0" />
         <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="7.1.0" />
+        <PackageReference Include="Cryptography.ECDSA.Secp256K1" Version="1.1.3" />
         <PackageReference Include="NBitcoin" Version="7.0.7" />
         <PackageReference Include="QBitNinja.Client" Version="1.0.4" />
-        <PackageReference Include="Secp256k1.Net" Version="0.1.55" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ECDSA\ECDSA.csproj" />
     </ItemGroup>
 
 </Project>

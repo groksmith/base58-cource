@@ -38,4 +38,16 @@ public static class Utils
     {
         return (hex.Length / 2).ToString("X");
     }
+    
+    public static bool OnlyHexInString(this string text)
+    {
+        return text.All(current => char.IsDigit(current) || current is >= 'a' and <= 'f');
+    }
+
+    public static string Trim(this StringBuilder text)
+    {
+        return string.Concat(text
+            .ToString()
+            .Where(c => !char.IsWhiteSpace(c)));
+    }
 }
