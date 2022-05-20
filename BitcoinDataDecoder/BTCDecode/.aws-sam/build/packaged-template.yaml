@@ -10,7 +10,7 @@ Resources:
   BtcTransactionParserFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://btc-decode-s3/a22ded0a77f485d8baf0f04fa1edd2cd
+      CodeUri: s3://btc-decode-s3/dca4972dbd46e5b89e7d89087e98f75e
       Handler: BtcTransactionParser::BtcTransactionParser.LambdaFunction::FunctionHandlerAsync
       Runtime: dotnet6
       MemorySize: 256

@@ -15,6 +15,7 @@
         <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="7.1.0" />
         <PackageReference Include="NBitcoin" Version="7.0.7" />
         <PackageReference Include="QBitNinja.Client" Version="1.0.4" />
+        <PackageReference Include="Secp256k1.Net" Version="0.1.55" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     </ItemGroup>
 

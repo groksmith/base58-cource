@@ -28,5 +28,4 @@ public class TransactionController : ControllerBase
         var transaction = Transaction.Parse(rawTransaction, network.GetNetInfo());
         return Ok(transaction.ToString());
     }
-
 }

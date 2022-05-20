@@ -7,13 +7,6 @@ namespace BtcTransactionParser.Controllers;
 [Route("[controller]/[action]")]
 public class UtilsController : ControllerBase
 {
-    private readonly ILogger<UtilsController> _logger;
-
-    public UtilsController(ILogger<UtilsController> logger)
-    {
-        _logger = logger;
-    }
-
     [HttpGet]
     public IActionResult GetLenghtAndHexRaw(string hex)
     {
@@ -44,8 +37,9 @@ public class UtilsController : ControllerBase
         var key = Key.Parse(wif, networkInfo);
 
         var hash = uint256.Parse(rawTransactionHash);
-        var hexSign = key.Sign(hash);
-        var bytes = hexSign.ToDER();
-        return Ok(Convert.ToHexString(bytes));
+        var sign = key.Sign(hash);
+        var signHex = Convert.ToHexString(sign.ToDER());
+        
+        return Ok(signHex);
     }
 }
