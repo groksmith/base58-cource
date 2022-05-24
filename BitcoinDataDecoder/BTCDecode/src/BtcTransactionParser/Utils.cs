@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace BtcTransactionParser;
@@ -34,11 +36,12 @@ public static class Utils
 
         return hexString.ToString();
     }
+
     public static string GetRawHexSize(this string hex)
     {
         return (hex.Length / 2).ToString("X");
     }
-    
+
     public static bool OnlyHexInString(this string text)
     {
         return text.All(current => char.IsDigit(current) || current is >= 'a' and <= 'f');
@@ -49,5 +52,39 @@ public static class Utils
         return string.Concat(text
             .ToString()
             .Where(c => !char.IsWhiteSpace(c)));
+    }
+
+    public static byte[] ComputeSha256Hash(this string rawData)
+    {
+        // Create a SHA256   
+        SHA256 sha = new SHA256Managed();
+
+        var hexAsBytes = new byte[rawData.Length / 2];
+
+        for (int index = 0; index < hexAsBytes.Length; index++)
+        {
+            string byteValue = rawData.Substring(index * 2, 2);
+            hexAsBytes[index] = byte.Parse(byteValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+        }
+
+        hexAsBytes = sha.ComputeHash(sha.ComputeHash(hexAsBytes)).Reverse().ToArray();
+        return hexAsBytes;
+    }
+
+    public static string GetCreateDerEncodSignature(this string r, string s)
+    {
+        var sig = new StringBuilder();
+
+        sig.Append(s.ReverseEndian());
+        sig.Append(s.GetRawHexSize());
+        sig.Append("02");
+        sig.Append(r.ReverseEndian());
+        sig.Append(r.GetRawHexSize());
+        sig.Append("02");
+        sig.Append(sig.ToString().GetRawHexSize());
+        sig.Append("30");
+
+        var signature = "01" + sig;
+        return signature.ReverseEndian();
     }
 }

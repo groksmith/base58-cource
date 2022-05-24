@@ -1,6 +1,6 @@
+using System.Globalization;
 using System.Numerics;
 using System.Text;
-using Cryptography.ECDSA;
 using ECDSA;
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
@@ -24,7 +24,7 @@ public class UtilsController : ControllerBase
         var retHexString = hex.ReverseEndian();
         return Ok(retHexString);
     }
-    
+
     [HttpGet]
     public IActionResult GetRawAmountFromDecimal(string amount)
     {
@@ -49,22 +49,22 @@ public class UtilsController : ControllerBase
                 values.Append(item);
             }
         }
-        
+
         return Ok(values.Trim());
     }
 
     [HttpPost]
-    public IActionResult SignRawTransaction(string rawTransactionHashDecimal, string privateKeyDecimal, NetSchema network)
+    public IActionResult SignRawTransaction(string rawTransactionHashDecimal, string privateKeyDecimal)
     {
         var privateKey = BigInteger.Parse(privateKeyDecimal);
         var nonce = BigInteger.Parse("123456789");
-        var publicKey = Secp256k1.Param_G * privateKey;
-        var data = Encoding.UTF8.GetBytes(rawTransactionHashDecimal);
 
-        var signature = Secp256k1.SignMessage(data, privateKey, nonce);
-        return Ok(new
-        {
-            R = signature.R.ToString(), S = signature.S.ToString()
-        });
+        var bytes = rawTransactionHashDecimal.ComputeSha256Hash();
+        var signature = Secp256k1.SignMessage(bytes, privateKey, nonce);
+        
+        var r = signature?.R.ToString("x");
+        var s = signature?.S.ToString("x");
+
+        return Ok(r!.GetCreateDerEncodSignature(s!));
     }
 }
