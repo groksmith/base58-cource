@@ -65,6 +65,6 @@ public class UtilsController : ControllerBase
         var r = signature?.R.ToString("x");
         var s = signature?.S.ToString("x");
 
-        return Ok(r!.GetCreateDerEncodSignature(s!));
+        return Ok(r!.GetCreateDerEncodeSignature(s!));
     }
 }

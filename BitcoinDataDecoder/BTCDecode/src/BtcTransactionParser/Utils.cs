@@ -57,13 +57,13 @@ public static class Utils
     public static byte[] ComputeSha256Hash(this string rawData)
     {
         // Create a SHA256   
-        SHA256 sha = new SHA256Managed();
+        var sha = SHA256.Create();
 
         var hexAsBytes = new byte[rawData.Length / 2];
 
-        for (int index = 0; index < hexAsBytes.Length; index++)
+        for (var index = 0; index < hexAsBytes.Length; index++)
         {
-            string byteValue = rawData.Substring(index * 2, 2);
+            var byteValue = rawData.Substring(index * 2, 2);
             hexAsBytes[index] = byte.Parse(byteValue, NumberStyles.HexNumber, CultureInfo.InvariantCulture);
         }
 
@@ -71,7 +71,7 @@ public static class Utils
         return hexAsBytes;
     }
 
-    public static string GetCreateDerEncodSignature(this string r, string s)
+    public static string GetCreateDerEncodeSignature(this string r, string s)
     {
         var sig = new StringBuilder();
 
